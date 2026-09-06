@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Retrouve Shadowz - Adresse Officielle</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        'shadowz-black': '#050202',
+                        'shadowz-red': '#E50914',
+                        'shadowz-dark-red': '#8A050C',
+                        'faint-gray': '#9CA3AF',
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        body {
+            background-color: #050202;
+            background-image: radial-gradient(circle at 50% 0%, #1a0505 0%, #050202 70%);
+            color: #ffffff;
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+            overscroll-behavior: none; 
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in-up {
+            animation: fadeInUp 1.2s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        /* Animation infinie ultra légère et fluide pour le titre géant */
+        @keyframes shadowPulse {
+            0%, 100% {
+                text-shadow: 0 4px 25px rgba(229, 9, 20, 0.35);
+                transform: scale(1);
+            }
+            50% {
+                text-shadow: 0 4px 35px rgba(229, 9, 20, 0.6);
+                transform: scale(1.015);
+            }
+        }
+
+        .title-animated {
+            animation: shadowPulse 4s ease-in-out infinite;
+            transform-origin: center;
+        }
+
+        .bg-icon {
+            color: rgba(229, 9, 20, 0.03);
+            filter: drop-shadow(0 0 10px rgba(229, 9, 20, 0.05));
+        }
+
+        .floating { animation: float 12s ease-in-out infinite; }
+        .floating-delayed { animation: float 15s ease-in-out infinite alternate; animation-delay: -5s; }
+        .floating-slow { animation: float 18s ease-in-out infinite alternate-reverse; animation-delay: -2s; }
+
+        @keyframes float {
+            0% { transform: translateY(0px) rotate(0deg) scale(1); }
+            33% { transform: translateY(-15px) rotate(5deg) scale(1.05); }
+            66% { transform: translateY(10px) rotate(-3deg) scale(0.95); }
+            100% { transform: translateY(0px) rotate(0deg) scale(1); }
+        }
+
+        .custom-link {
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            background: rgba(255, 255, 255, 0.02);
+            backdrop-filter: blur(10px);
+        }
+        
+        .custom-link::before {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%; width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(229, 9, 20, 0.2), transparent);
+            transition: all 0.6s ease;
+            z-index: 0;
+        }
+
+        .custom-link:hover {
+            border-color: rgba(229, 9, 20, 0.5);
+            background: rgba(229, 9, 20, 0.05);
+            box-shadow: 0 0 20px rgba(229, 9, 20, 0.15);
+            transform: translateY(-2px);
+        }
+
+        .custom-link:hover::before {
+            left: 100%;
+        }
+
+        .custom-link > * {
+            position: relative;
+            z-index: 1;
+        }
+        
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #050202; }
+        ::-webkit-scrollbar-thumb { background: #1a0505; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #8A050C; }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col items-center justify-center relative" 
+      oncontextmenu="return false;" 
+      ondragstart="return false;" 
+      ondrop="return false;">
+
+    <div class="absolute inset-0 z-0 pointer-events-none overflow-hidden">
+        <i class="fa-regular fa-heart absolute bg-icon text-3xl floating" style="top: 10%; right: 15%;"></i>
+        <i class="fa-solid fa-ticket absolute bg-icon text-4xl floating-delayed -rotate-12" style="top: 40%; left: 10%;"></i>
+        <i class="fa-solid fa-film absolute bg-icon text-5xl floating-slow rotate-12" style="bottom: 25%; left: 8%;"></i>
+        <i class="fa-solid fa-play absolute bg-icon text-2xl floating -rotate-45" style="bottom: 20%; right: 20%;"></i>
+        <i class="fa-regular fa-star absolute bg-icon text-3xl floating-delayed rotate-45" style="bottom: 8%; right: 12%;"></i>
+        <i class="fa-regular fa-star absolute bg-icon text-2xl floating-slow" style="top: 55%; right: 5%;"></i>
+        <i class="fa-solid fa-caret-right absolute bg-icon text-3xl floating rotate-12" style="top: 70%; left: 15%;"></i>
+    </div>
+
+    <main class="z-10 relative flex flex-col items-center w-full px-6 max-w-2xl text-center fade-in-up">
+        
+        <!-- Titre SHADOWZ géant avec animation infinie ultra fluide -->
+        <h1 class="text-6xl sm:text-7xl font-black tracking-widest text-white mb-6 uppercase title-animated">
+            Shadowz
+        </h1>
+
+        <!-- Description -->
+        <p class="text-faint-gray text-[15px] sm:text-base leading-relaxed max-w-lg mx-auto mb-10">
+            Cette page te donne toujours l'adresse officielle du site. Garde-la dans tes favoris : si le site change un jour d'adresse, la nouvelle sera affichée ici et annoncée sur le Telegram.
+        </p>
+
+        <!-- ========================================================================= -->
+        <!-- ZONE DE LIENS (MODIFIEZ, AJOUTEZ OU SUPPRIMEZ DES LIENS ICI FACILEMENT)   -->
+        <!-- ========================================================================= -->
+        <div class="flex flex-col gap-4 w-full max-w-sm mx-auto">
+            
+            <!-- LIEN 1 : Site principal -->
+            <a href="https://votresite.com" target="_blank" rel="noopener noreferrer" class="custom-link flex items-center justify-between w-full p-4 rounded-xl text-gray-300 hover:text-white group cursor-pointer">
+                <div class="flex items-center gap-4">
+                    <div class="w-10 h-10 rounded-lg bg-white/5 flex items-center justify-center group-hover:bg-shadowz-red/20 group-hover:text-shadowz-red transition-colors">
+                        <i class="fa-solid fa-link text-lg"></i>
+                    </div>
+                    <span class="font-semibold tracking-wide text-sm sm:text-base">Aller sur le site</span>
+                </div>
+                <i class="fa-solid fa-chevron-right text-xs opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all text-shadowz-red"></i>
+            </a>
+
+            <!-- LIEN 2 : Telegram -->
+            <a href="https://t.me/votretelegram" target="_blank" rel="noopener noreferrer" class="custom-link flex items-center justify-between w-full p-4 rounded-xl text-gray-300 hover:text-white group cursor-pointer">
+                <div class="flex items-center gap-4">
+                    <div class="w-10 h-10 rounded-lg bg-white/5 flex items-center justify-center group-hover:bg-[#0088cc]/20 group-hover:text-[#0088cc] transition-colors">
+                        <i class="fa-brands fa-telegram text-xl"></i>
+                    </div>
+                    <span class="font-semibold tracking-wide text-sm sm:text-base">Rejoindre le Telegram</span>
+                </div>
+                <i class="fa-solid fa-chevron-right text-xs opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all text-[#0088cc]"></i>
+            </a>
+
+        </div>
+        <!-- ========================================================================= -->
+        <!-- FIN DE LA ZONE DE LIENS                                                   -->
+        <!-- ========================================================================= -->
+
+        <!-- Footer Date -->
+        <div class="mt-16 text-white/20 text-xs font-medium tracking-wider uppercase">
+            Dernière modification le 11/08/2026
+        </div>
+
+    </main>
+
+    <script>
+        document.addEventListener('contextmenu', event => event.preventDefault());
+
+        document.onkeydown = function(e) {
+            if (e.keyCode == 123) {
+                return false;
+            }
+            if (e.ctrlKey && e.shiftKey && e.keyCode == 73) {
+                return false;
+            }
+            if (e.ctrlKey && e.shiftKey && e.keyCode == 74) {
+                return false;
+            }
+            if (e.ctrlKey && e.keyCode == 85) {
+                return false;
+            }
+        };
+
+        document.addEventListener('dragstart', function(e) {
+            e.preventDefault();
+        });
+    </script>
+
+</body>
+</html>
