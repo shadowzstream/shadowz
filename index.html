@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Shadowz - Adresse Officielle</title>
+    <title>Retrouve Shadowz - Adresse Officielle</title>
     
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap" rel="stylesheet">
@@ -41,28 +41,31 @@
             user-select: none;
         }
 
+        /* --- NOUVELLES ANIMATIONS D'ENTRÉE EN CASCADE --- */
         @keyframes fadeInUp {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            to { opacity: 1; transform: translateY(0); }
         }
 
-        .fade-in-up {
-            animation: fadeInUp 1.2s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+        .animate-item {
             opacity: 0;
             transform: translateY(30px);
+            animation: fadeInUp 1s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
         }
+        
+        .delay-100 { animation-delay: 0.1s; }
+        .delay-300 { animation-delay: 0.3s; }
+        .delay-500 { animation-delay: 0.5s; }
+        .delay-700 { animation-delay: 0.7s; }
 
-        /* Animation infinie ultra légère et fluide pour le titre géant */
+        /* --- ANIMATION DU TITRE AMÉLIORÉE (Lueur rouge) --- */
         @keyframes shadowPulse {
             0%, 100% {
-                text-shadow: 0 4px 25px rgba(229, 9, 20, 0.35);
+                text-shadow: 0 0 15px rgba(229, 9, 20, 0.4);
                 transform: scale(1);
             }
             50% {
-                text-shadow: 0 4px 35px rgba(229, 9, 20, 0.6);
-                transform: scale(1.015);
+                text-shadow: 0 0 45px rgba(229, 9, 20, 0.9);
+                transform: scale(1.02);
             }
         }
 
@@ -71,6 +74,26 @@
             transform-origin: center;
         }
 
+        /* --- ANIMATION DE SORTIE (0.8s AU CLIC) --- */
+        @keyframes pageExit {
+            0% { opacity: 1; transform: scale(1); filter: blur(0px); }
+            100% { opacity: 0; transform: scale(0.92) translateY(-20px); filter: blur(8px); }
+        }
+
+        .is-exiting {
+            animation: pageExit 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards !important;
+            pointer-events: none;
+        }
+
+        .btn-clicked {
+            background: rgba(229, 9, 20, 0.15) !important;
+            border-color: rgba(229, 9, 20, 0.8) !important;
+            box-shadow: 0 0 25px rgba(229, 9, 20, 0.5) !important;
+            transform: scale(0.97) !important;
+            transition: all 0.3s ease !important;
+        }
+
+        /* --- ANIMATIONS DE FOND --- */
         .bg-icon {
             color: rgba(229, 9, 20, 0.03);
             filter: drop-shadow(0 0 10px rgba(229, 9, 20, 0.05));
@@ -87,6 +110,7 @@
             100% { transform: translateY(0px) rotate(0deg) scale(1); }
         }
 
+        /* --- BOUTONS --- */
         .custom-link {
             position: relative;
             overflow: hidden;
@@ -142,25 +166,25 @@
         <i class="fa-solid fa-caret-right absolute bg-icon text-3xl floating rotate-12" style="top: 70%; left: 15%;"></i>
     </div>
 
-    <main class="z-10 relative flex flex-col items-center w-full px-6 max-w-2xl text-center fade-in-up">
+    <main id="main-content" class="z-10 relative flex flex-col items-center w-full px-6 max-w-2xl text-center">
         
-        <!-- Titre SHADOWZ géant avec animation infinie ultra fluide -->
-        <h1 class="text-6xl sm:text-7xl font-black tracking-widest text-white mb-6 uppercase title-animated">
-            Shadowz
-        </h1>
+        <!-- Titre SHADOWZ géant (Rouge + Glow) avec wrapper d'animation séparé -->
+        <div class="animate-item delay-100 mb-6">
+            <h1 class="text-7xl sm:text-8xl font-black tracking-widest uppercase title-animated text-shadowz-red">
+                SHADOWZ
+            </h1>
+        </div>
 
-        <!-- Description -->
-        <p class="text-faint-gray text-[15px] sm:text-base leading-relaxed max-w-lg mx-auto mb-10">
+        <!-- Description avec animation d'entrée -->
+        <p class="text-faint-gray text-[15px] sm:text-base leading-relaxed max-w-lg mx-auto mb-10 animate-item delay-300">
             Cette page te donne toujours l'adresse officielle du site. Garde-la dans tes favoris : si le site change un jour d'adresse, la nouvelle sera affichée ici et annoncée sur le Telegram.
         </p>
 
-        <!-- ========================================================================= -->
-        <!-- ZONE DE LIENS (MODIFIEZ, AJOUTEZ OU SUPPRIMEZ DES LIENS ICI FACILEMENT)   -->
-        <!-- ========================================================================= -->
-        <div class="flex flex-col gap-4 w-full max-w-sm mx-auto">
+        <!-- ZONE DE LIENS -->
+        <div class="flex flex-col gap-4 w-full max-w-sm mx-auto animate-item delay-500">
             
-            <!-- LIEN 1 : Site principal -->
-            <a href="https://shadows-app.base44.app/" target="_blank" rel="noopener noreferrer" class="custom-link flex items-center justify-between w-full p-4 rounded-xl text-gray-300 hover:text-white group cursor-pointer">
+            <!-- LIEN 1 : Site principal (Appelle la fonction de transition JS) -->
+            <a href="https://votresite.com" onclick="handleLinkTransition(event, 'https://votresite.com')" class="custom-link flex items-center justify-between w-full p-4 rounded-xl text-gray-300 hover:text-white group cursor-pointer">
                 <div class="flex items-center gap-4">
                     <div class="w-10 h-10 rounded-lg bg-white/5 flex items-center justify-center group-hover:bg-shadowz-red/20 group-hover:text-shadowz-red transition-colors">
                         <i class="fa-solid fa-link text-lg"></i>
@@ -170,8 +194,8 @@
                 <i class="fa-solid fa-chevron-right text-xs opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all text-shadowz-red"></i>
             </a>
 
-            <!-- LIEN 2 : Telegram -->
-            <a href="https://t.me/+zwylFM8T1Ig4N2Vk" target="_blank" rel="noopener noreferrer" class="custom-link flex items-center justify-between w-full p-4 rounded-xl text-gray-300 hover:text-white group cursor-pointer">
+            <!-- LIEN 2 : Telegram (Appelle la fonction de transition JS) -->
+            <a href="https://t.me/votretelegram" onclick="handleLinkTransition(event, 'https://t.me/votretelegram')" class="custom-link flex items-center justify-between w-full p-4 rounded-xl text-gray-300 hover:text-white group cursor-pointer">
                 <div class="flex items-center gap-4">
                     <div class="w-10 h-10 rounded-lg bg-white/5 flex items-center justify-center group-hover:bg-[#0088cc]/20 group-hover:text-[#0088cc] transition-colors">
                         <i class="fa-brands fa-telegram text-xl"></i>
@@ -182,18 +206,35 @@
             </a>
 
         </div>
-        <!-- ========================================================================= -->
-        <!-- FIN DE LA ZONE DE LIENS                                                   -->
-        <!-- ========================================================================= -->
 
         <!-- Footer Date -->
-        <div class="mt-16 text-white/20 text-xs font-medium tracking-wider uppercase">
+        <div class="mt-16 text-white/20 text-xs font-medium tracking-wider uppercase animate-item delay-700">
             Dernière modification le 11/08/2026
         </div>
 
     </main>
 
     <script>
+        // Fonction qui gère l'animation de sortie de 0.8 secondes au clic
+        function handleLinkTransition(event, url) {
+            // 1. Bloque la redirection immédiate
+            event.preventDefault();
+
+            // 2. Ajoute l'effet "pressé" et lumineux sur le bouton cliqué
+            const buttonClicked = event.currentTarget;
+            buttonClicked.classList.add('btn-clicked');
+
+            // 3. Lance l'animation de sortie (recul, flou, fondu au noir) sur tout le contenu
+            const mainContent = document.getElementById('main-content');
+            mainContent.classList.add('is-exiting');
+
+            // 4. Redirige l'utilisateur après exactement 800ms (0.8s)
+            setTimeout(() => {
+                window.location.href = url;
+            }, 800);
+        }
+
+        // Sécurité front-end basique
         document.addEventListener('contextmenu', event => event.preventDefault());
 
         document.onkeydown = function(e) {
